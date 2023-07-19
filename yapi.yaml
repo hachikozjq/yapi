@@ -1,0 +1,48 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yapi
+  labels:
+    app: yapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yapi
+  template:
+    metadata:
+      labels:
+        app: yapi
+    spec:
+      containers:
+        - name: yapi
+          image: hachikozjq/yapi:0.0.1-SNAPSHOT
+          env:
+            - name: YAPI_SERVER_PORT
+              value: 3000
+            - name: YAPI_ADMINACCOUNT
+              value: 343122875@qq.com
+            - name: YAPI_DB_SERVERNAME
+              value: 172.26.21.252
+            - name: YAPI_DB_DATABASE
+              value: yapi-back
+            - name: $YAPI_DB_PORT
+              value: 27017
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yapi
+spec:
+  selector:
+    app: yapi
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
