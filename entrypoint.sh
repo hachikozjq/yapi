@@ -1,6 +1,6 @@
 #!/bin/sh
 #update config file with env var
-conf_file=/config.json
+conf_file=/yapi/config.json
 if [ $YAPI_SERVER_PORT ]; then
     sed -i 2c\"port\":\"$YAPI_SERVER_PORT\", $conf_file
 fi

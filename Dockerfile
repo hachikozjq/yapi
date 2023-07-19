@@ -6,7 +6,7 @@ RUN unzip v${VERSION}.zip && mv yapi-${VERSION} vendors
 WORKDIR /yapi/vendors
 RUN apk add python2 make
 RUN npm install --production --registry https://registry.npm.taobao.org
-RUN wget https://raw.githubusercontent.com/hachikozjq/yapi/main/entrypoint.sh
+RUN wget https://hachiko-zjq.oss-cn-hangzhou.aliyuncs.com/entrypoint.sh
 RUN chmod a+x entrypoint.sh
 
 FROM node:12-alpine
